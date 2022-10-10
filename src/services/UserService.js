@@ -1,37 +1,10 @@
-const mongoose = require("mongoose")
+const User = require("../models/User")
+const BaseService = require("../services/BaseService")
 
-const UserSchema = new mongoose.Schema ({
-    
-    first_name: String,
-    last_name: String,
-    username: String,
-    email: {
-        type: String,
-        unique: true,
-    },
-    password: String,
-    Addresses: [
-        {
-            title: String,
-            address1: String,
-            address2: String,
-            country: String,
-            province: String,
-            code: String,
-        }
-    ],
-    phones: {
-        type: String,
-        unique: true,
-    },
-    films: [] ,
-    isAdmin: Boolean,
-    isCostumer: Boolean
-},
-    {
-        timestamps: true,
-        versionKey: false
+class UserService extends BaseService {
+    constructor() {
+        super(User)
     }
-)
+}
 
-module.exports = mongoose.model("user", UserSchema)
+module.exports = new UserService
