@@ -1,7 +1,7 @@
 const Joi = require("joi")
 
 const loginUser = Joi.object({
-    email: Joi.string().email.regex(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).required().min(8),
+    email: Joi.string().email().regex(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).required().min(8),
     password: Joi.string().required().min(3)
 })
 const createUser = Joi.object({
@@ -13,6 +13,9 @@ const createUser = Joi.object({
     isAdmin: Joi.boolean().default(true),
     isCostumer: Joi.boolean().default(false),
     username: Joi.string().required().min(3),
+})
+const resetUserPassword = Joi.object({
+    email: Joi.string().email().regex(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).required().min(8)
 })
 const updateUser = Joi.object({
     first_name: Joi.string().min(3).pattern(new RegExp(/^[a-z ,.'-]+$/i)).message('Enter a eligible first name'),

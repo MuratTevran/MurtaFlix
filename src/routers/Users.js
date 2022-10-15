@@ -6,7 +6,7 @@ const { NormalUserAuthenticateToken, AdminUserAuthenticateToken } = require("../
 const idChecker = require("../middleware/idChecker")
 const router = express.Router()
 
-router.route("/").get(AdminUserAuthenticateToken, UserConotroller.index)
+router.route("/").get(AdminUserAuthenticateToken, UserController.index)
 router.route("/register").post(UserController.create)
 router.route("/login").post(validate(schema.loginUser, "body"), UserController.login)
 router.route("/resetPassword").patch(validate(schema.resetUserPassword, "Body"), UserController.resetPassword)
